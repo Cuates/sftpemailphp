@@ -12,6 +12,7 @@
 ### **Important Note**
 * This script was written with PHP 7.0+
 * PHP needs read and write permissions to a temporary directory on the server
+* Memory limit can be reached and will need to be increased
 
 ### Prerequisite Library
 * phpseclib

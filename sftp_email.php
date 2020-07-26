@@ -37,17 +37,17 @@
     throw new ErrorException($errstr, $errno, 0, $errfile, $errline);
   });
 
-  // Attempt to generate email
+  // Attempt script logic
   try
   {
     // Declare download directory
     define ('DOWNLOADDIR', '/var/www/html/Doc_Directory/');
     define ('TEMPDOC', '/var/www/html/Temp_Directory/');
 
-    // Include database class file
+    // Include class file
     include ("sftp_email_class.php");
 
-    // Create an object of database class
+    // Create an object of class
     $sftp_email_cl = new sftp_email_class();
 
     // Initialize variables

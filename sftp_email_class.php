@@ -2,7 +2,7 @@
   /*
           File: sftp_email_cl.php
        Created: 07/22/2020
-       Updated: 07/23/2020
+       Updated: 07/26/2020
     Programmer: Cuates
     Updated By: Cuates
        Purpose: Class for all SFTP and Email interactions
@@ -39,8 +39,7 @@
       self::__construct();
     }
 
-    // Set this function to private so public users cannot use this file
-    // Create an database/SFTP open function, for the function calls can connect to the database/SFTP
+    // Open connection function to an internal or external server
     private function openConnection($type = "notype")
     {
       // Set variable
@@ -66,6 +65,7 @@
         $this->URLAPI = next($conVars); // URL API
         $this->RemotePath = next($conVars); // Remote directory
         $this->subscriptionKey = next($conVars); // Subscription Key
+        $this->appKey = next($conVars); // App Key
 
         // Check database name. The data Name is set to make sure that we are connecting with a database
         if(preg_match('/<Database_Name>[a-zA-Z]{1,}/i', $type))
@@ -79,7 +79,7 @@
           // This will help when the database returns a hard error
           $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
-        else if(preg_match('/^SFTP$/i', $type))
+        else if(preg_match('/^<SFTP_Name>$/i', $type))
         {
           // Create an object with connection
           $this->sftp = new \phpseclib\Net\SFTP($this->Server, $this->Port);

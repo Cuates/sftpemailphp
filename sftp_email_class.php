@@ -2,7 +2,7 @@
   /*
           File: sftp_email_cl.php
        Created: 07/22/2020
-       Updated: 07/26/2020
+       Updated: 08/03/2020
     Programmer: Cuates
     Updated By: Cuates
        Purpose: Class for all SFTP and Email interactions
@@ -68,7 +68,7 @@
         $this->appKey = next($conVars); // App Key
 
         // Check database name. The data Name is set to make sure that we are connecting with a database
-        if(preg_match('/<Database_Name>[a-zA-Z]{1,}/i', $type))
+        if(preg_match('/MSSQL<Database_Name>[a-zA-Z]{1,}/i', $type))
         {
           // error_log('odbc:Driver=' . $this->Driver . '; Servername=' . $this->Server . '; Port=' . $this->Port . '; Database=' . $this->Database . '; UID=' . $this->User . '; PWD=' . $this->Pass . '; Type=' . $type);
 
@@ -78,6 +78,28 @@
           // Throw exception if given by the database server
           // This will help when the database returns a hard error
           $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        else if(preg_match('/PGSQL<Database_Name>[a-zA-Z]{1,}/i', $type))
+        {
+            // error_log('pgsql:host=' . $this->Server . '; port=' . $this->Port . '; dbname=' . $this->Database . '; user=' . $this->User . '; password=' . $this->Pass . ';');
+
+            // Connect to a database
+            $this->pdo = new PDO('pgsql:host=' . $this->Server . '; port=' . $this->Port. '; dbname=' . $this->Database . '; user=' . $this->User . '; password=' . $this->Pass . ';'); // The developer will need to configure the driver of choice
+
+            // Throw exception if given by the database server
+            // This will help when the database returns a hard error
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        else if(preg_match('/MySQL<Database_Name>[a-zA-Z]{1,}/i', $type))
+        {
+            // error_log('mysql:host=' . $this->Server . '; port=' . $this->Port . '; dbname=' . $this->Database . ', user=' . $this->User . ', password=' . $this->Pass);
+
+            // Connect to a database
+            $this->pdo = new PDO('mysql:host=' . $this->Server . '; port=' . $this->Port. '; dbname=' . $this->Database, $this->User, $this->Pass); // The developer will need to configure the driver of choice
+
+            // Throw exception if given by the database server
+            // This will help when the database returns a hard error
+            $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         else if(preg_match('/^<SFTP_Name>$/i', $type))
         {

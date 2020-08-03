@@ -2,7 +2,7 @@
   /*
           File: sftp_email_config.php
        Created: 07/22/2020
-       Updated: 07/26/2020
+       Updated: 08/03/2020
     Programmer: Cuates
     Updated By: Cuates
        Purpose: Sensitive information
@@ -54,7 +54,7 @@
         if($type === "<Database_Name>")
         {
           // Set variables
-          $this->driver = "<Drive_Name_On_Linux_Machine>"; // Driver Name on Linux machine (e.g. FreeTDS)
+          $this->driver = "<Drive_Name_On_Linux_Machine>"; // Driver Name on Linux machine (e.g. FreeTDS, PGSQL, MySQL, ...)
           $this->servername = "<Database_Server_Name>";
           $this->port = "<Database_Port_Number>";
           $this->database = "<Production_Database_Name>";
@@ -104,7 +104,7 @@
         if($type === "<Database_Name>")
         {
           // Set variables
-          $this->driver = "<Drive_Name_On_Linux_Machine>"; // Driver Name on Linux machine (e.g. FreeTDS)
+          $this->driver = "<Drive_Name_On_Linux_Machine>"; // Driver Name on Linux machine (e.g. FreeTDS, PGSQL, MySQL, ...)
           $this->servername = "<Database_Server_Name>";
           $this->port = "<Database_Port_Number>";
           $this->database = "<Development_Database_Name>";
